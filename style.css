@@ -1,0 +1,343 @@
+/* ==========================================================================
+   1. Global Styles & Variables
+   ========================================================================== */
+:root {
+  --primary-color: #00bfa5;
+  /* Teal Accent Color */
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --text-secondary-color: #a0a0a0;
+  --border-color: #333333;
+  --shadow-color: rgba(0, 191, 165, 0.15);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* ทำให้การเลื่อนหน้าจอเมื่อคลิกเมนูนุ่มนวลขึ้น */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* ทำให้ body สูงเต็มหน้าจอเสมอ (สำหรับ Sticky Footer) */
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Sarabun', sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. Typography
+   ========================================================================== */
+h1,
+h2,
+h3 {
+  color: white;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: white;
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+header {
+  padding: 2rem 0;
+  text-align: center;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+header p {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* ทำให้เมนูขึ้นบรรทัดใหม่ได้บนจอมือถือ */
+  gap: 15px;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: var(--text-secondary-color);
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: white;
+  background-color: rgba(0, 191, 165, 0.1);
+  /* สีจางๆ เมื่อ hover */
+  border-color: var(--primary-color);
+}
+
+nav a.active {
+  color: white;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   4. Main Content & Page Sections
+   ========================================================================== */
+
+main.container {
+  flex-grow: 1;
+
+  /* สร้างระยะห่างที่ชัดเจนจาก Header และ Footer */
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  /* กำหนดสไตล์ให้เป็น Panel */
+  background-color: rgba(30, 30, 30, 0.85);
+  /* สีพื้นผิวเกือบทึบ แต่ยังเห็นพื้นหลังเล็กน้อย */
+  backdrop-filter: blur(15px);
+  /* เพิ่มความเบลอให้ดูเหมือนกระจกฝ้า */
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  /* ทำให้ขอบมนสวยงาม */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  /* เพิ่มเงาให้ดูมีมิติ */
+
+  /* เพิ่มระยะห่างภายใน Panel */
+  padding: 2.5rem 3rem;
+}
+
+.page {
+  display: none;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: #121212;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* ==========================================================================
+   5. Specific Sections (Skills, Projects, Contact)
+   ========================================================================== */
+
+/* --- Skills Section --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  padding: 20px;
+  text-align: center;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.skill-card i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+/* --- Projects Section --- */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.project-card {
+  padding: 25px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  border-left: 5px solid var(--primary-color);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card a i {
+  margin-left: 5px;
+}
+
+/* --- Contact Section --- */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-links a {
+  display: inline-flex;
+  /* จัดไอคอนกับข้อความให้อยู่กลาง */
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.contact-links i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  width: 25px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   6. Footer
+   ========================================================================== */
+footer {
+  padding: 2rem 0;
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary-color);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-social-links a {
+  color: var(--text-secondary-color);
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   7. Responsive Design (for smaller screens)
+   ========================================================================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  main {
+    padding: 2rem 0;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
